@@ -1,0 +1,139 @@
+// Variabelen
+$primary-color: rgb(0, 119, 188);
+$secondary-color: rgb(0, 97, 188);
+$border-radius-large: 55px;
+$border-radius-small: 30px;
+
+// Mixin
+@mixin border-radius($radius) {
+    border-radius: $radius;
+}
+
+// Algemene stijlen voor de body
+body {
+    font-family: 'Times New Roman', Times, serif; // Stelt het lettertype in
+    margin: 0; // Verwijdert standaard marge
+    padding: 0; // Verwijdert standaard opvulling
+    background-color: $primary-color; // Stelt de achtergrondkleur in
+    color: #fbfbfb; // Stelt de tekstkleur in
+
+    // Media query voor schermen met een maximale breedte van 600px
+    @media (max-width: 600px) {
+        font-size: 14px; // Verkleint de lettergrootte
+    }
+}
+
+// Stijlen voor de header
+header {
+    background-color: $secondary-color; // Stelt de achtergrondkleur van de header in
+    color: #fff; // Stelt de tekstkleur in
+    padding: 20px; // Voegt opvulling toe aan de header
+    text-align: left; // Lijnt de tekst links uit
+
+    h1 {
+        margin: 0; // Verwijdert standaard marge
+    }
+
+    // Media query voor schermen met een maximale breedte van 600px
+    @media (max-width: 600px) {
+        text-align: center; // Centreert de tekst in de header
+        padding: 10px; // Voegt opvulling toe aan de header
+    }
+}
+
+// Stijlen voor de navigatie
+nav {
+    ul {
+        list-style-type: none; // Verwijdert standaard opsommingstekens
+        margin: 0; // Verwijdert standaard marge
+        padding: 0; // Verwijdert standaard opvulling
+
+        li {
+            display: inline; // Zorgt ervoor dat de lijstitems naast elkaar worden weergegeven
+            margin-right: 20px; // Voegt marge toe aan de rechterkant van de lijstitems
+
+            a {
+                color: #fff; // Stelt de tekstkleur in
+                text-decoration: none; // Verwijdert standaard onderstreping
+            }
+
+            // Media query voor schermen met een maximale breedte van 600px
+            @media (max-width: 600px) {
+                display: block; // Zorgt ervoor dat de lijstitems onder elkaar worden weergegeven
+                text-align: center; // Centreert de tekst in de lijstitems
+                margin: 10px 0; // Voegt marge toe boven en onder de lijstitems
+            }
+        }
+    }
+}
+
+// Stijlen voor de main-sectie
+main {
+    display: grid; // Gebruikt een gridlayout
+    grid-template-columns: 1fr; // Stelt één kolom in die de volledige breedte beslaat
+    grid-gap: 20px; // Voegt ruimte toe tussen de grid-items
+    padding: 10px; // Voegt opvulling toe aan de main-sectie
+
+    // Media query voor schermen met een maximale breedte van 600px
+    @media (max-width: 600px) {
+        padding: 5px; // Voegt opvulling toe aan de main-sectie
+    }
+}
+
+// Stijlen voor de secties
+section {
+    border: 5px solid #B2EBF2; // Stelt een rand in met een bepaalde kleur en breedte
+    padding: 20px; // Voegt opvulling toe aan de secties
+    @include border-radius($border-radius-large); // Maakt de randen afgerond
+
+    // Media query voor schermen met een maximale breedte van 600px
+    @media (max-width: 600px) {
+        padding: 10px; // Voegt opvulling toe aan de secties
+        border-width: 3px; // Stelt de breedte van de rand in
+        @include border-radius($border-radius-small); // Maakt de randen afgerond
+    }
+}
+
+// Stijlen voor de footer
+footer {
+    background-color: $secondary-color; // Stelt de achtergrondkleur van de footer in
+    color: #fff; // Stelt de tekstkleur in
+    text-align: left; // Lijnt de tekst links uit
+    padding: 20px; // Voegt opvulling toe aan de footer
+
+    // Media query voor schermen met een maximale breedte van 600px
+    @media (max-width: 600px) {
+        text-align: center; // Centreert de tekst in de footer
+        padding: 10px; // Voegt opvulling toe aan de footer
+    }
+}
+
+// Stijlen voor de tooltip
+.tooltip {
+    position: relative; // Positioneert de tooltip relatief t.o.v. het omliggende element
+    display: inline-block; // Zorgt ervoor dat de tooltip inline wordt weergegeven
+    border-bottom: 1px dotted black; // Voegt een onderstrepingseffect toe
+    cursor: help; // Verandert de muisaanwijzer in een vraagteken
+
+    .tooltiptext {
+        visibility: hidden; // Verbergt de tooltip standaard
+        width: 250px; // Stelt de breedte van de tooltip in
+        background-color: #333; // Stelt de achtergrondkleur van de tooltip in
+        color: #fff; // Stelt de tekstkleur in
+        text-align: center; // Centreert de tekst in de tooltip
+        @include border-radius(6px); // Maakt de randen afgerond
+        padding: 5px 0; // Voegt opvulling toe aan de tooltip
+        position: absolute; // Positioneert de tooltip absoluut t.o.v. het omliggende element
+        z-index: 1; // Zorgt ervoor dat de tooltip boven andere elementen wordt weergegeven
+        bottom: 125%; // Positioneert de tooltip boven het woord
+        left: 50%; // Positioneert de tooltip horizontaal in het midden
+        margin-left: -60px; // Centreert de tooltip
+        opacity: 0; // Maakt de tooltip standaard onzichtbaar
+        transition: opacity 0.7s; // Voegt een overgangseffect toe voor de zichtbaarheid
+    }
+
+    &:hover .tooltiptext {
+        visibility: visible; // Toont de tooltip bij hover
+        opacity: 1; // Maakt de tooltip volledig zichtbaar
+    }
+}
